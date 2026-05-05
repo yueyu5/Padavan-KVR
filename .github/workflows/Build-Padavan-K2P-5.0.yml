@@ -68,9 +68,30 @@ jobs:
         sed -i '/CONFIG_FIRMWARE_WEBUI_HIDE_VPN/d' .config
         sed -i '/CONFIG_FIRMWARE_INCLUDE_OPENVPN/d' .config
         sed -i '/CONFIG_FIRMWARE_INCLUDE_MSD_LITE/d' .config
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_FRPC/d' .config
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_UDPRELAY/d' .config
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_TPROXY/d' .config
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_GLOBAL_SOCKS5/d' .config
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_IPTABLES_MOD/d' .config
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_IP6TABLES_MOD/d' .config
+        sed -i '/CONFIG_IPV6/d' .config
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_IP6TABLES/d' .config
+
         ######################################################################
         #以下选项是定义你需要的功能（y=集成,n=忽略），重新写入到.config文件
         ######################################################################
+        # UDP TPROXY 转发必备
+        echo "CONFIG_FIRMWARE_INCLUDE_UDPRELAY=y" >> .config
+        echo "CONFIG_FIRMWARE_INCLUDE_TPROXY=y" >> .config
+        # 全局Socks5 启动依赖
+        echo "CONFIG_FIRMWARE_INCLUDE_GLOBAL_SOCKS5=y" >> .config
+        # iptables 底层转发模块
+        echo "CONFIG_FIRMWARE_INCLUDE_IPTABLES_MOD=y" >> .config
+        echo "CONFIG_FIRMWARE_INCLUDE_IP6TABLES_MOD=y" >> .config
+        # IPv6全套
+        echo "CONFIG_IPV6=y" >> .config
+        echo "CONFIG_FIRMWARE_INCLUDE_IP6TABLES=y" >> .config
+ 
         echo "CONFIG_32M_REBOOT_FIXUP=y" >> .config 
         echo "CONFIG_FIRMWARE_INCLUDE_MSD_LITE=n" >> .config 
         ##内网穿透
