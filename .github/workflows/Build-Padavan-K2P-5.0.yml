@@ -84,7 +84,7 @@ jobs:
         echo "CONFIG_FIRMWARE_INCLUDE_UDPRELAY=y" >> .config
         echo "CONFIG_FIRMWARE_INCLUDE_TPROXY=y" >> .config
         # 全局Socks5 启动依赖
-        echo "CONFIG_FIRMWARE_INCLUDE_GLOBAL_SOCKS5=y" >> .config
+        sed -i 's/^CONFIG_FIRMWARE_INCLUDE_GLOBAL_SOCKS5=.*/CONFIG_FIRMWARE_INCLUDE_GLOBAL_SOCKS5=y/' .config
         # iptables 底层转发模块
         echo "CONFIG_FIRMWARE_INCLUDE_IPTABLES_MOD=y" >> .config
         echo "CONFIG_FIRMWARE_INCLUDE_IP6TABLES_MOD=y" >> .config
