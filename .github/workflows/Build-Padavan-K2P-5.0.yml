@@ -113,11 +113,7 @@ jobs:
         sed -i 's/^CONFIG_FIRMWARE_INCLUDE_BASE64=n/CONFIG_FIRMWARE_INCLUDE_BASE64=y/' .config
         # 本地存储节点列表
         sed -i 's/^CONFIG_FIRMWARE_INCLUDE_STORAGE=n/CONFIG_FIRMWARE_INCLUDE_STORAGE=y/' .config
-        # 清理旧配置
-        sed -i '/CONFIG_FIRMWARE_INCLUDE_GLOBAL_SOCKS5/d' .config
-        # 强制开启编译全局socks5程序
-        sed -i '$a CONFIG_FIRMWARE_INCLUDE_GLOBAL_SOCKS5=y' .config
-
+        
         echo "CONFIG_FIRMWARE_INCLUDE_SHADOWSOCKS=y" >> .config
         echo "CONFIG_FIRMWARE_INCLUDE_SS=y" >> .config
         echo "CONFIG_FIRMWARE_INCLUDE_SSR=y" >> .config
