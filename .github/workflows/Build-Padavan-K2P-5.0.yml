@@ -100,6 +100,20 @@ jobs:
         #echo "CONFIG_FIRMWARE_INCLUDE_FRPC=y" >> .config  #frpc
         echo "CONFIG_FIRMWARE_INCLUDE_ALIDDNS=y" >> .config #aliddns
         ##科学上网##
+        # 开启订阅主功能
+        sed -i 's/^CONFIG_FIRMWARE_INCLUDE_SUBSCRIBE=n/CONFIG_FIRMWARE_INCLUDE_SUBSCRIBE=y/' .config
+        # 节点管理面板 负责展示订阅节点
+        sed -i 's/^CONFIG_FIRMWARE_INCLUDE_NODEMANAGER=n/CONFIG_FIRMWARE_INCLUDE_NODEMANAGER=y/' .config
+        # 订阅拉取必备网络工具
+        sed -i 's/^CONFIG_FIRMWARE_INCLUDE_CURL=n/CONFIG_FIRMWARE_INCLUDE_CURL=y/' .config
+        sed -i 's/^CONFIG_FIRMWARE_INCLUDE_WGET=n/CONFIG_FIRMWARE_INCLUDE_WGET=y/' .config
+        # json解析核心 没有这个无法识别vmess/xray订阅格式
+        sed -i 's/^CONFIG_FIRMWARE_INCLUDE_JQ=n/CONFIG_FIRMWARE_INCLUDE_JQ=y/' .config
+        # base64解码 订阅必备
+        sed -i 's/^CONFIG_FIRMWARE_INCLUDE_BASE64=n/CONFIG_FIRMWARE_INCLUDE_BASE64=y/' .config
+        # 本地存储节点列表
+        sed -i 's/^CONFIG_FIRMWARE_INCLUDE_STORAGE=n/CONFIG_FIRMWARE_INCLUDE_STORAGE=y/' .config
+
         echo "CONFIG_FIRMWARE_INCLUDE_SHADOWSOCKS=y" >> .config
         echo "CONFIG_FIRMWARE_INCLUDE_SS=y" >> .config
         echo "CONFIG_FIRMWARE_INCLUDE_SSR=y" >> .config
